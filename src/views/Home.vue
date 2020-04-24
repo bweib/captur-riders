@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div v-if="videoShow.isShow" id="container">
     <video id="background_video" muted autoplay src="../../public/videos/1.mp4"></video>
     <div id="video_cover"></div>
     <div id="overlay"></div>
@@ -19,33 +19,37 @@
       </div>
     </section>
   </div>
+  <div v-else>主页</div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-import { onMounted, computed } from "vue";
+import { onMounted, reactive, computed } from "vue";
 export default {
   name: "Home",
   setup() {
+    const videoShow = reactive({
+      isShow: true
+    });
     const changetitle = () => {
       console.log("666");
     };
     const videoEnd = () => {
       console.log("放完了");
     };
-    const doubleCount = computed(() => {
-    });
+    const doubleCount = computed(() => {});
     //生命周期方法
     onMounted(() => {
-      console.log("init mounted...");
+      console.log(videoShow, "init mounted...");
       changetitle();
       const md = document.getElementById("background_video");
       md.onended = function() {
-        console.log("播放结束");
+        videoShow.isShow = false;
+        console.log(videoShow, "播放结束");
       };
     });
-    return { doubleCount, changetitle, videoEnd };
+    return { videoShow, doubleCount, changetitle, videoEnd };
   },
   components: {
     // HelloWorld
