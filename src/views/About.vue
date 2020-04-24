@@ -2,6 +2,8 @@
   <div>
     <h1>{{title.name}}</h1>
     <h2>{{count}}</h2>
+    <div class="test">test</div>
+    <div class="test1">test1</div>
   </div>
   <div>
     <button @click="add">修改名称</button>
@@ -33,9 +35,20 @@ export default {
       console.log("init mounted...");
     });
     //如果需要修改值，可通过value
-    return { title, count, add, changetitle,};
+    return { title, count, add, changetitle };
   }
 };
 </script>
-<style>
+<style lang="less" scoped>
+.test {
+  width: 750px;
+  background: red;
+  // border: 1px solid blueviolet;
+  font-size: 16px;
+}
+.test1 {
+  width: 375px;
+  font-size: 18px;
+  background: skyblue;
+}
 </style>
